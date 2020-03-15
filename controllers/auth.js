@@ -22,7 +22,7 @@ exports.signup = (req,res) => {
 
         newUser.save((err, success) => {
             if(err) {
-                console.log('SAVE UP ERROR', err);
+                console.log('SAVE USER ERROR', err);
                     return res.status(400).json({
                     error: err
                 });
