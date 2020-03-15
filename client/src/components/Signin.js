@@ -9,8 +9,8 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 const Signin = () => {
     const [values, setValues] = useState({
-        email: 'rgvegajr@gmail.com',
-        password: 'wwrrtt',
+        email: '',
+        password: '',
         buttonText: 'Submit'
     });
     
@@ -54,7 +54,7 @@ const Signin = () => {
             
             <div className="form-group">
             <label className="text-muted">Password</label>
-            <input onChange={handleChange('password')} value={password} type="text" className="form-control"/>
+            <input onChange={handleChange('password')} value={password} type="password" className="form-control"/>
             </div>
             
             <div>
