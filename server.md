@@ -1,0 +1,1 @@
+this server is built in a MVC structure, the view will be provided by the react client

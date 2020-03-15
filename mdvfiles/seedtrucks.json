@@ -1,0 +1,256 @@
+{
+    "_id":{"$oid":"5e5eb78b04361b2fed664ce3"},
+    "name":"Mac Bowl",
+    "phone":8.336222695E+09,
+    "website":"www.instagram/themacbowlfoodtruck",
+    "location":"301 NW 33rd St Miami, Florida 33127",
+    "hours": [
+        "MONDAY: CLOSED",
+        "TUESDAY: CLOSED",
+        "WEDNESDAY: 10pm to 1am",
+        "THURSDAY 10pm to 1am",
+        "FRIDAY: 8pm to 4am",
+        "SATURDAY: 8pm to 4am",
+        "SUNDAY: CLOSED"]
+},
+{
+    "_id":{"$oid":"5e5eb8c304361b2fed664ce4"},
+    "name":"Chef Holmes Smokin Bones",
+    "phone":9.546382002E+09,
+    "website":"www.instagram/chef_holmes",
+    "location":"298 NW 30th St Miami, Florida 33127",
+    "hours":[
+        "MONDAY: CLOSED",
+        "TUESDAY: CLOSED",
+        "WEDNESDAY: 10pm to 1am",
+        "THURSDAY 10pm to 1am",
+        "FRIDAY: 8pm to 2am",
+        "SATURDAY: 8pm to 4am",
+        "SUNDAY: 12pm to 8pm"]
+},
+{
+    "_id":{"$oid":"5e5eedec04361b2fed664ce5"},
+    "name":"Monster Bite",
+    "phone":3.0583394E+09,
+    "website":"monsterbitewworld.com",
+    "location":"101 NW 31st St Miami, Florida 33127",
+    "hours":[
+        "MONDAY: CLOSED",
+        "TUESDAY: 6pm to 12am",
+        "WEDNESDAY: 10pm to 1am",
+        "THURSDAY 10pm to 1am",
+        "FRIDAY:9pm to 1am",
+        "SATURDAY: 8pm to 4am",
+        "SUNDAY: CLOSED"]
+},
+{
+    "_id":{"$oid":"5e5eef0304361b2fed664ce6"},
+    "name":"Cuban Guys",
+    "phone":7.864019426E+09,
+    "website":"cubanguysrestaurants.com",
+    "location":"2337 NW 5 Ave Miami, Florida 33127",
+    "hours":[
+        "MONDAY: CLOSED",
+        "TUESDAY: 6pm to 12am",
+        "WEDNESDAY: CLOSED",
+        "THURSDAY 9pm to 2am",
+        "FRIDAY:8pm to 4am",
+        "SATURDAY: 8pm to 4am",
+        "SUNDAY: CLOSED"]
+},
+{
+    "_id":{"$oid":"5e5fc40c04361b2fed664ce7"},
+    "name":"Amaize Arepas",
+    "phone":9.547408999E+09,
+    "website":"www.amaizeyou.com",
+    "location":"2025 NW 1st Ave Miami, Florida 33127",
+    "hours":[
+        "MONDAY: CLOSED",
+        "TUESDAY: CLOSED",
+        "WEDNESDAY: 10pm to 12am",
+        "THURSDAY 10pm to 1am",
+        "FRIDAY:9pm to 3am",
+        "SATURDAY: 8pm to 4am",
+        "SUNDAY: 2pm to 6pm"]
+},
+{
+    "_id":{"$oid":"5e5fc52704361b2fed664ce8"},
+    "name":"Potato Corner",
+    "phone":8.005651114E+09,
+    "website":"potatocornerusa.com",
+    "location":"1501 NW 1st Pl Miami, Florida 33127",
+    "hours":[
+        "MONDAY: CLOSED",
+        "TUESDAY: CLOSED",
+        "WEDNESDAY: 10pm to 12am",
+        "THURSDAY 10pm to 12am",
+        "FRIDAY:9pm to 4am",
+        "SATURDAY: 8pm to 4am",
+        "SUNDAY: CLOSED"]
+},
+{
+    "_id":{"$oid":"5e5fd7b604361b2fed664ce9"},
+    "name":"Chifa Street",
+    "phone":7.8636263E+09,
+    "website":"chifastreet.com",
+    "location":"125 NW 25th St Miami, Florida 33127",
+    "hours":[
+        "MONDAY: CLOSED",
+        "TUESDAY: 6pm to 10pm",
+        "WEDNESDAY: 10pm to 12am",
+        "THURSDAY 8pm to 11pm",
+        "FRIDAY:9pm to 2am",
+        "SATURDAY: 8pm to 4am",
+        "SUNDAY: CLOSED"]
+},
+{
+    "_id":{"$oid":"5e5fd8da04361b2fed664cea"},
+    "name":"El Punto Peruano",
+    "phone":3.053167974E+09,
+    "website":"puntoperuanorestaurant.com",
+    "location":"330 NW 19th St Miami, Florida 33136",
+    "hours":[
+        "MONDAY: CLOSED",
+        "TUESDAY: CLOSED",
+        "WEDNESDAY: 10pm to 12am",
+        "THURSDAY 8pm to 11pm",
+        "FRIDAY:9pm to 2am",
+        "SATURDAY: 8pm to 4am",
+        "SUNDAY: 12pm to 8pm"]
+},
+{
+    "_id":{"$oid":"5e5fd9ad04361b2fed664ceb"},
+    "name":"Bubble Fresh",
+    "phone":8.667839963E+09,
+    "website":"bubblefresh.com",
+    "location":"23rd NE 25th St Miami, Florida 33136",
+    "hours":[
+        "MONDAY: CLOSED",
+        "TUESDAY: CLOSED",
+        "WEDNESDAY: 10pm to 12am",
+        "THURSDAY 8pm to 11pm",
+        "FRIDAY:9pm to 2am",
+        "SATURDAY: 8pm to 4am",
+        "SUNDAY: 12pm to 8pm"]
+},
+
+{
+    name: "World Famous House of Mac",
+    address: "2055 NW 2nd Ave, Miami, FL 33127",
+    hours: {
+       Mon: "12PM-11PM",
+       Tue: "12PM-11PM",
+       Wed: "12PM-11PM",
+       Thu: "12PM-11PM",
+       Fri: "12PM-2AM",
+       Sat: "12PM-2AM",
+       Sun: "12PM-12AM"
+    },
+    phoneNumber: "(786) 636-6967",
+    website: "https://www.houseofmac.com/",
+    image: "https://rh-vendoradmin.s3.amazonaws.com/trucks/original/21373/5bb53820-b8a4-4db8-abc6-261946204482.jpg",
+    currentLocation: String,
+    owner: {
+       id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User"
+       },
+    username: String,
+    }
+ },
+ {
+     name: "Ms. Cheezious",
+    address: "7418 Biscayne Blvd, Miami, FL 33138",
+    hours: {
+       Mon: "11AM-11PM",
+       Tue: "11AM-11PM",
+       Wed: "11AM-11PM",
+       Thu: "11AM-11PM",
+       Fri: "11AM-11PM",
+       Sat: "11AM-11PM",
+       Sun: "11AM-11PM"
+    },
+    phoneNumber: "(305) 989-4019",
+    website: "https://www.mscheezious.com/",
+    image: "https://pbs.twimg.com/profile_images/668633221949706240/lAooI_O3.jpg",
+    currentLocation: String,
+    owner: {
+       id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User"
+       },
+    username: String,
+    }
+ },
+ {
+     name: "Zona Grill Venezuelan Food",
+    address: "3026 N Miami Ave, Miami, FL 33127",
+    hours: {
+       Mon: "6PM-12AM",
+       Tue: "6PM-12AM",
+       Wed: "8PM-12AM",
+       Thu: "6PM-12AM",
+       Fri: "6PM-3AM",
+       Sat: "6PM-3AM",
+       Sun: "Closed"
+    },
+    phoneNumber: "(786) 930-9930",
+    website: String,
+    image: "https://s3-media0.fl.yelpcdn.com/bphoto/7wlxhCMbBCd1KulrqX7g5A/l.jpg",
+    currentLocation: String,
+    owner: {
+       id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User"
+       },
+    username: String,
+    }
+ },
+ {
+     name: "Caja Caliente",
+    address: "2634 NE 2nd Ave, Miami, FL 33137",
+    hours: {
+       Mon: "11AM-11PM",
+       Tue: "11AM-11PM",
+       Wed: "11AM-11PM",
+       Thu: "11AM-11PM",
+       Fri: "11AM-1AM",
+       Sat: "11AM-1AM",
+       Sun: "12PM-11PM"
+    },
+    phoneNumber: "(786) 398-5137",
+    website: "http://caja-caliente.com/",
+    image: "https://myareanetwork-photos.s3.amazonaws.com/bizlist_photos/cover/200967_1504192071.jpg",
+    currentLocation: String,
+    owner: {
+       id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User"
+       },
+    username: String,
+    }
+ },
+ {
+     name: "Orale Pana Food Truck",
+    address: "2805 NE 2nd Ave, Miami, FL 33137",
+    hours: {
+       Mon: "7:30PM-1:30AM",
+       Tue: "7:30PM-1:30AM",
+       Wed: "7:30PM-1:30AM",
+       Thu: "7:30PM-1:30AM",
+       Fri: "7:30PM-4:30AM",
+       Sat: "7:30PM-4:30AM",
+       Sun: "7:30PM-1:30AM"
+    },
+    phoneNumber: "(786) 585-1034",
+    website: String,
+    image: "https://rh-vendoradmin.s3.amazonaws.com/trucks/original/20858/5b8eb9a8-f6c4-4f9f-8030-51d346204482.png",
+    currentLocation: String,
+    owner: {
+       id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User"
+       },
+    username: String,
+    }
+ });
