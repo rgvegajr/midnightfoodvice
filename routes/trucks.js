@@ -1,5 +1,5 @@
-var express = require("express");
-var router  = express.Router();
+const express = require("express");
+const router  = express.Router();
 // var Truck = require("../models/truck");
 // var middleware = require("../middleware");
 // var NodeGeocoder = require('node-geocoder');
@@ -14,28 +14,30 @@ var router  = express.Router();
 // var geocoder = NodeGeocoder(options);
 
 //import controller
-const { read, update } = require('../controllers/trucks');
+const { readAll, readOne, newTruck, update } = require('../controllers/trucks');
 const {requireSignin} = require('../controllers/auth');
 
-router.get('/truck/:id', read);
-router.put('/truck/update/:id', requireSignin, update);
+router.get('/trucks', readAll);
+router.get('/truck/:id', readOne);
+// router.post('/truck', requireSignin, newTruck);
+router.post('/truck', newTruck);
+// router.put('/truck/update/:id', requireSignin, update);
+router.put('/truck/update/:id',  update);
 
 
 
-
-
-// INDEX - show all trucks
-//trucks - name, image
-router.get("/", function(req, res){
-    //get all trucks from DB
-    Truck.find({}, function(err, allTrucks){
-        if(err){
-            console.log(err);
-        }  else  {
-            res.render("trucks/index", {trucks: allTrucks});
-        }
-    });
-});
+// // INDEX - show all trucks
+// //trucks - name, image
+// router.get("/", function(req, res){
+//     //get all trucks from DB
+//     Truck.find({}, function(err, allTrucks){
+//         if(err){
+//             console.log(err);
+//         }  else  {
+//             res.render("trucks/index", {trucks: allTrucks});
+//         }
+//     });
+// });
 
 // CREATE - add new truck to DB
 // router.post("/", middleware.isLoggedIn, function(req, res){
