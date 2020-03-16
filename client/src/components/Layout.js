@@ -37,6 +37,16 @@ const Layout = ({children, match, history }) => {
                     Trucks
                 </Link>
             </li>
+            <li className="nav-item">
+                <Link to="/home-page" className="nav-link" style={isActive("/home-page")}>
+                    Homepage
+                </Link>
+            </li>
+            <li className="nav-item">
+                <Link to="/landing-page" className="nav-link" style={isActive("/landing-page")}>
+                    Landingpage
+                </Link>
+            </li>
             
             {isAuth() && (
                 <li className="nav-item">
