@@ -15,7 +15,7 @@ import {
 
 // core components
 import HomeNavbar from "../components/Navbars/HomeNavbar.js";
-// import HomePageHeader from "components/Headers/HomePageHeader.js";
+import HomePageHeader from "components/Headers/HomePageHeader.js";
 // import DefaultFooter from "components/Footers/DefaultFooter.js";
 
 function HomePage() {
@@ -33,7 +33,7 @@ function HomePage() {
     <>
       <HomeNavbar />
       <div className="wrapper">
-        {/* <HomePageHeader /> */}
+        <HomePageHeader />
         <div className="section">
           <Container>
             <div className="button-container">
