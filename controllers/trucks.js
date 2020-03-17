@@ -44,8 +44,8 @@ exports.newTruck = (req,res) => {
             website_url,
             image_url,
             currentLocation,
-            owner,
-            username
+            username,
+            owner
         } = req.body;
     Truck.findOne({name}).exec((err, truck) => {
         if(truck) {
@@ -71,8 +71,8 @@ exports.newTruck = (req,res) => {
                     website_url,
                     image_url,
                     currentLocation,
-                    owner,
-                    username
+                    username,
+                    owner
                 });
             newTruck.save((err, success) => {
                 if(err) {
@@ -112,8 +112,8 @@ exports.update = (req,res) => {
         website_url,
         image_url,
         currentLocation,
-        owner,
-        username
+        username,
+        owner
     } = req.body;
     Truck.findOneAndUpdate(truckToUpdate, updatedTruck, {new : true}).exec((err, truck) => {
         if(!truckToUpdate) {

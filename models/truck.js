@@ -19,12 +19,12 @@ const truckSchema = new mongoose.Schema(
    website_url: String,
    image_url: String,
    currentLocation: String,
+   username: String,
    owner: {
       id: {
          type: mongoose.Schema.Types.ObjectId,
          ref: "User"
-      },
-   username: String,
+      }
    }
 });
 
