@@ -6,7 +6,7 @@ import {ToastContainer, toast} from 'react-toastify';
 import {authenticate, isAuth} from './helpers';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-const Trucks = () => {
+const AddTruck = () => {
     const [values, setValues] = useState({
         name: '', 
         address: '',
@@ -125,16 +125,15 @@ const Trucks = () => {
                 <Link to="/">Go back</Link>
             </form>
     )
+    
   return (
     <Layout>
         {JSON.stringify(isAuth())}
         <ToastContainer />
-        {/* <h1 style="text-align: center">Truck Information Page</h1> */}
-        <h1>Truck Information Page</h1>
-
+        <h1>Add Truck Information Page</h1>
         {truckForm()}
     </Layout>
     )
 };
 
-export default Trucks;
+export default AddTruck;

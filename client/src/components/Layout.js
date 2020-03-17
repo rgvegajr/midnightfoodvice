@@ -33,8 +33,8 @@ const Layout = ({children, match, history }) => {
             </Fragment>
             )}
             <li className="nav-item">
-                <Link to="/trucks" className="nav-link" style={isActive("/trucks")}>
-                    Trucks
+                <Link to="/truckinfo/:id" className="nav-link" style={isActive("/truckinfo/:id")}>
+                    TruckInfo
                 </Link>
             </li>
             <li className="nav-item">
@@ -45,6 +45,11 @@ const Layout = ({children, match, history }) => {
             <li className="nav-item">
                 <Link to="/landing-page" className="nav-link" style={isActive("/landing-page")}>
                     Landingpage
+                </Link>
+            </li>
+            <li className="nav-item">
+                <Link to="/addtruck" className="nav-link" style={isActive("/addtruck")}>
+                    AddTruck
                 </Link>
             </li>
             
