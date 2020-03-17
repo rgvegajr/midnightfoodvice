@@ -15,8 +15,8 @@ import {
 
 // core components
 import HomeNavbar from "../components/Navbars/HomeNavbar.js";
-import HomePageHeader from "components/Headers/HomePageHeader.js";
-import DefaultFooter from "components/Footers/DefaultFooter.js";
+import HomePageHeader from "../components/Headers/HomePageHeader.js";
+import DefaultFooter from "../components/Footers/DefaultFooter.js";
 
 function HomePage() {
   const [pills, setPills] = React.useState("2");
@@ -192,7 +192,7 @@ function HomePage() {
             </Row>
           </Container>
         </div>
-        {/* <DefaultFooter /> */}
+        <DefaultFooter />
       </div>
     </>
   );

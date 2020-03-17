@@ -19,8 +19,7 @@ import Layout from './components/Layout';
 
 const App = () => {
   return (
-    <Layout>
-    
+    <Layout>   
     <h1>Midnight Food Vice Landing Page</h1>
     </Layout>
   )

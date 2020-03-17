@@ -3,15 +3,13 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import App from './App';
 import Signup from './components/Signup';
 import Signin from './components/Signin';
-import Trucks from './components/Trucks';
+import AddTruck from './components/AddTruck';
 import Activate from './components/Activate';
 import HomePage from './components/HomePage';
 import LandingPage from './components/LandingPage';
 import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
-
-
-import Owner from './components/Owner';
+import TruckInfo from './components/TruckInfo';
 import PrivateRoute from './components/PrivateRoute';
 
 const Routes = () => {
@@ -26,8 +24,8 @@ const Routes = () => {
                 <Route path="/signin" exact component={Signin} />
                 <Route path="/signup" exact component={Signup} />
                 <Route path="/activate/:token" exact component={Activate} />
-                <Route path="/trucks" exact component={Trucks} />
-                <PrivateRoute path="/owner" exact component={Owner} />
+                <Route path="/truckinfo/:id" exact component={TruckInfo} />
+                <PrivateRoute path="/addtruck" exact component={AddTruck} />
             </Switch>            
         </BrowserRouter>
     );
