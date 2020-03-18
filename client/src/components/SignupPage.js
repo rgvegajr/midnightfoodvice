@@ -1,5 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useState} from "react";
+import { Link, Redirect} from "react-router-dom";
+import Layout from './Layout';
+import axios from 'axios';
+import {isAuth} from './helpers';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 // reactstrap components
 import {
@@ -19,10 +24,12 @@ import {
 } from "reactstrap";
 
 // core components
-import HomeNavbar from "../components/Navbars/HomeNavbar.js";
-// import TransparentFooter from "components/Footers/TransparentFooter.js";
+import HomeNavbar from "../components/HomeNavbar.js";
 
-function SignupPage() {
+// import HomeNavbar from "../components/Navbars/HomeNavbar.js";
+// import TransparentFooter from "components/Footers/TransparentFooter.js";
+const SignupPage = () => {
+// function SignupPage() {
   const [firstFocus, setFirstFocus] = React.useState(false);
   const [lastFocus, setLastFocus] = React.useState(false);
   React.useEffect(() => {
@@ -36,6 +43,43 @@ function SignupPage() {
       document.body.classList.remove("sidebar-collapse");
     };
   });
+//from working signup
+const [values, setValues] = useState({
+  name: '', 
+  email: '',
+  password: '',
+  buttonText: 'Submit'
+});
+
+const {name, email, password, buttonText } = values;
+
+const handleChange = name => event => {
+  console.log(event.target.value);
+  setValues({...values, [name]: event.target.value});
+  
+};
+
+const clickSubmit = event => {
+  event.preventDefault(); //keeps page from reload
+  setValues({...values, buttonText: 'Submitting'});
+  axios({
+      method: 'POST',
+      url: `/api/signup`,
+      // url: `${process.env.REACT_APP_API}/signup`,
+      data: {name, email, password}
+  })
+  .then(response => {
+      console.log('SIGNUP SUCCESS', response);
+      setValues({...values, name: '', email: '', password: '', buttonText: 'Submitted'});
+      toast.success(response.data.message);
+  })
+  .catch(error => {
+      console.log('SIGNUP ERROR', error.response.data);
+      setValues({...values, buttonText: 'Submit'});
+      toast.error(error.response.data.error);
+  })        
+};
+
   return (
     <>
       <HomeNavbar />
@@ -48,10 +92,15 @@ function SignupPage() {
         ></div>
         <div className="content">
           <Container>
+          {JSON.stringify(isAuth())}
+          <ToastContainer />
+        {isAuth() ? <Redirect to="/signup-page"/> : null}
+        {JSON.stringify({name, email, password})}
             <Col className="ml-auto mr-auto" md="4">
               <Card className="card-login card-plain">
                 <Form action="" className="form" method="">
-                  <CardHeader className="text-center">               
+                  <CardHeader className="text-center">
+                      Create Account             
                   </CardHeader>
                   <CardBody>
                     <InputGroup
@@ -66,9 +115,12 @@ function SignupPage() {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        value="username"
-                        name="username"
-                        placeholder="User Name..."
+                      onChange={handleChange('name')} value={name}
+                      placeholder="Name..."
+                      className="form-control"
+                        // value="username"
+                        // name="username"
+                        // placeholder="User Name..."
                         type="text"
                         onFocus={() => setFirstFocus(true)}
                         onBlur={() => setFirstFocus(false)}
@@ -86,8 +138,10 @@ function SignupPage() {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        value="email"
-                        name="email"
+                      onChange={handleChange('email')} value={email} 
+                      className="form-control"
+                        // value="email"
+                        // name="email"
                         placeholder="Email..."
                         type="email"
                         onFocus={() => setFirstFocus(true)}
@@ -106,8 +160,10 @@ function SignupPage() {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        value="password"
-                        name="password"
+                      onChange={handleChange('password')} value={password} 
+                      className="form-control"
+                        // value="password"
+                        // name="password"
                         placeholder="Password..."
                         type="text"
                         onFocus={() => setLastFocus(true)}
@@ -116,31 +172,33 @@ function SignupPage() {
                     </InputGroup>
                   </CardBody>
                   <CardFooter className="text-center">
+
                     <Button
                       block
+                      onClick={clickSubmit}
                       className="btn-round"
                       color="info"
-                      href="#pablo"
-                      onClick={e => e.preventDefault()}
+                      // href="#pablo"
+                      // onClick={e => e.preventDefault()}
                       size="lg"
                     >
-                      Create Account!
+                      {buttonText}
                     </Button>
-                    <div className="pull-left">
+                    {/* <div className="pull-left">
                       <h6>
                       <NavLink to="/login-page" tag={Link}>
                 <i className="now-ui-icons users_circle-08"></i>Login!
                 </NavLink>
-                        <a
+                        {/* <a
                           className="link"
                           href="#pablo"
                           onClick={e => e.preventDefault()}
                         >
                           Create Account
-                        </a>
-                      </h6>
-                    </div>
-                    <div className="pull-right">
+                        </a> */}
+                      {/* </h6>
+                    </div> */} 
+                    {/* <div className="pull-right">
                       <h6>
                         <a
                           className="link"
@@ -150,7 +208,7 @@ function SignupPage() {
                           Need Help?
                         </a>
                       </h6>
-                    </div>
+                    </div> */}
                   </CardFooter>
                 </Form>
               </Card>

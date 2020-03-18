@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {Fragment} from "react";
+import { Link, withRouter} from "react-router-dom";
+import {isAuth, signout} from './helpers';
 
 // reactstrap components
 import {
@@ -16,8 +17,18 @@ import {
   Container,
   UncontrolledTooltip
 } from "reactstrap";
+//revert to no params if doesnt work
+function HomeNavbar({children, match, history }) {
+  //remove if required
+  const isActive = path => {
+    if(match.path === path) {
+        return { color: '#fff'};
+    } else {
+        return { color: '#fff'};
+    }
+  };
 
-function HomeNavbar() {
+  //
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   React.useEffect(() => {
@@ -52,42 +63,7 @@ function HomeNavbar() {
       ) : null}
       <Navbar className={"fixed-top " + navbarColor} color="info" expand="lg">
         <Container>
-          <UncontrolledDropdown className="button-dropdown">
-            <DropdownToggle
-              caret
-              data-toggle="dropdown"
-              href="#pablo"
-              id="navbarDropdown"
-              tag="a"
-              onClick={e => e.preventDefault()}
-            >
-              <span className="button-bar"></span>
-              <span className="button-bar"></span>
-              <span className="button-bar"></span>
-            </DropdownToggle>
-            <DropdownMenu aria-labelledby="navbarDropdown">
-              <DropdownItem header tag="a">
-                Dropdown header
-              </DropdownItem>
-              <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
-                Action
-              </DropdownItem>
-              <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
-                Another action
-              </DropdownItem>
-              <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
-                Something else here
-              </DropdownItem>
-              <DropdownItem divider></DropdownItem>
-              <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
-                Separated link
-              </DropdownItem>
-              <DropdownItem divider></DropdownItem>
-              <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
-                One more separated link
-              </DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown>
+          
           <div className="navbar-translate">
             <NavbarBrand
               href="https://demos.creative-tim.com/now-ui-kit-react/index?ref=nukr-examples-navbar"
@@ -116,19 +92,63 @@ function HomeNavbar() {
             navbar
           >
             <Nav navbar>
-              <NavItem>
-                
-                <NavLink to="/login-page" tag={Link}>
-                <i className="now-ui-icons users_circle-08"></i>Login
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                
-                <NavLink to="/home-page" tag={Link}>
+            <NavItem> 
+                <NavLink to="/" tag={Link} style={isActive("/")}>
                 <i className="now-ui-icons shopping_shop"></i>Home
                 </NavLink>
               </NavItem>
+                {!isAuth() && (
+              <Fragment>
+              <NavItem>                
+                <NavLink to="/signup-page" tag={Link} style={isActive("/signup-page")}>
+                <i className="now-ui-icons shopping_shop"></i>Signup
+                </NavLink>
+              </NavItem>
+              <NavItem>             
+                <NavLink to="/login-page" tag={Link} style={isActive("/signin-page")}>
+                <i className="now-ui-icons users_circle-08"></i>Login
+                </NavLink>
+              </NavItem>
+              </Fragment>
+              )}
+              <NavItem>             
+                <NavLink  tag={Link} to="/truckinfo/:id" className="nav-link" style={isActive("/truckinfo/:id")}>
+                <i className="now-ui-icons users_circle-08"></i>Truck Info
+                </NavLink>
+              </NavItem>
+              {isAuth() && (
+                <Fragment>
               <NavItem>
+                <p className="nav-item">
+                    <span 
+                        className="nav-link">Signed in as: {isAuth().name}
+                    </span>
+                </p>
+              </NavItem>
+              <NavItem>             
+                 <NavLink to="/addTruck" tag={Link} style={isActive("/addtruck")}>
+                 <i className="now-ui-icons users_circle-08"></i>Add a truck
+                 </NavLink>
+              </NavItem>
+              </Fragment>
+            )}
+            {isAuth() && (
+            <NavItem>
+                <p className="nav-item">
+                <span 
+                        className="nav-link"
+                        style={{cursor : 'pointer', color: '#fff'}}  
+                        onClick={() => {
+                        signout(() => {
+                            history.push('/')
+                        });
+                    }}>
+                        Signout
+                    </span>
+                </p>
+            </NavItem>
+            )}
+            <NavItem>
               <UncontrolledDropdown nav>
                 <DropdownToggle
                   caret
@@ -173,4 +193,4 @@ function HomeNavbar() {
   );
 }
 
-export default HomeNavbar;
+export default withRouter(HomeNavbar);

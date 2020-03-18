@@ -20,7 +20,9 @@ const {requireSignin} = require('../controllers/auth');
 router.get('/home-page', readAll);
 router.get('/truckinfo/:id', readOne);
 // router.post('/truck', requireSignin, newTruck);
-router.post('/addtruck', requireSignin, newTruck);
+// router.post('/addtruck', requireSignin, newTruck);
+router.post('/addtruck', newTruck);
+// router.post('/addtruck', newTruck);
 // router.put('/truck/update/:id', requireSignin, update);
 router.put('/truck/update/:id',  update);
 
