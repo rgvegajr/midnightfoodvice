@@ -1,6 +1,9 @@
 import React, {Fragment} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import {isAuth, signout} from './helpers';
+// import HomeNavbar from './components/Navbars/HomeNavbar';
+import HomeNavbar from './HomeNavbar';
+
 
 const Layout = ({children, match, history }) => {
     const isActive = path => {
@@ -21,13 +24,13 @@ const Layout = ({children, match, history }) => {
             {!isAuth() && (
             <Fragment>
                 <li className="nav-item">
-                    <Link to="/signup" className="nav-link" style={isActive("/signup")}>
+                    <Link to="/signup-page" className="nav-link" style={isActive("/signup-page")}>
                         Signup
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/signin" className="nav-link" style={isActive("/signin")}>
-                        Signin
+                    <Link to="/login-page" className="nav-link" style={isActive("/login-page")}>
+                        Login
                     </Link>
                 </li>
             </Fragment>
@@ -37,28 +40,21 @@ const Layout = ({children, match, history }) => {
                     TruckInfo
                 </Link>
             </li>
-            <li className="nav-item">
-                <Link to="/home-page" className="nav-link" style={isActive("/home-page")}>
-                    Homepage
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link to="/landing-page" className="nav-link" style={isActive("/landing-page")}>
-                    Landingpage
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link to="/addtruck" className="nav-link" style={isActive("/addtruck")}>
-                    AddTruck
-                </Link>
-            </li>
+
             
             {isAuth() && (
+                <Fragment>
                 <li className="nav-item">
                     <span 
                         className="nav-link">Signed in as: {isAuth().name}
                     </span>
                 </li>
+                            <li className="nav-item">
+                            <Link to="/addtruck" className="nav-link" style={isActive("/addtruck")}>
+                                AddTruck
+                            </Link>
+                        </li>
+                        </Fragment>
             )}
             
             {isAuth() && (
@@ -79,6 +75,7 @@ const Layout = ({children, match, history }) => {
     );
     return (
         <Fragment>
+        {/* <HomeNavbar /> */}
             {nav()}
             <div className="container">{children}</div>
         </Fragment>

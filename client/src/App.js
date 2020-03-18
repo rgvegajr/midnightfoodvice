@@ -12,7 +12,8 @@ import {
   Col,
 } from "reactstrap";
 // core components
-import HomeNavbar from "./components/Navbars/HomeNavbar.js";
+import HomeNavbar from "./components/HomeNavbar.js";
+// import HomeNavbar from "./components/Navbars/HomeNavbar.js";
 import HomePageHeader from "components/Headers/HomePageHeader.js";
 import Layout from './components/Layout';
 

@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Link, Redirect} from 'react-router-dom';
-import Layout from './Layout';
+import Layout from '../Layout';
 import axios from 'axios';
 import {ToastContainer, toast} from 'react-toastify';
-import {authenticate, isAuth} from './helpers';
+import {authenticate, isAuth} from '../helpers';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 //in udemy this is the Private page

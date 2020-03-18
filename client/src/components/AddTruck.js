@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, Fragment} from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import Layout from './Layout';
 import axios from 'axios';
@@ -6,6 +6,27 @@ import {ToastContainer, toast} from 'react-toastify';
 import {authenticate, isAuth} from './helpers';
 import 'react-toastify/dist/ReactToastify.min.css';
 
+// reactstrap components
+import {
+  Button,
+  Input,
+  InputGroupAddon,
+  InputGroupText,
+  InputGroup,
+  Container,
+  Row,
+  Col
+} from "reactstrap";
+
+// core components
+import HomeNavbar from "./HomeNavbar";
+import HomePageHeader from "./Headers/HomePageHeader";
+import DefaultFooter from "./Footers/DefaultFooter";
+
+
+
+// function landingpagetest() {
+  // const AddTruck = () => {
 const AddTruck = () => {
     const [values, setValues] = useState({
         name: '', 
@@ -42,7 +63,7 @@ const AddTruck = () => {
         setValues({...values, buttonText: 'Submitting'});
         axios({
             method: 'POST',
-            url: `/api/truck`,
+            url: `/api/addtruck`,
             // url: `${process.env.REACT_APP_API}/signup`,
             data: {name, address, zipcode, hoursMon, hoursTue, hoursWed, hoursThu, hoursFri, hoursSat, hoursSun, 
                 phone_number, email_address, website_url, image_url, currentLocation, owner, username}
@@ -76,64 +97,104 @@ const AddTruck = () => {
             toast.error(error.response.data.error);
         })         
     };
-    
-    const truckForm = () => (
-            <form>
-                <div className="form-group">
-                    <input className="form-control" type="text" name="name" onChange={handleChange('name')} value={name} placeholder="Truck name"></input>
-                </div>
-                <div className="form-group">
-                    <input className="form-control" type="text" name="address" onChange={handleChange('address')} value={address} placeholder="Address"></input>
-                </div>
-                <div className="form-group">
-                    <input className="form-control" type="text" name="zipcode" onChange={handleChange('zipcode')} value={zipcode} placeholder="Zipcode"></input>
-                </div>
-                <div className="form-group">
-                    <label for="hours">Hours</label>
-                    <input className="form-control" type="text" name="hoursMon" onChange={handleChange('hoursMon')} value={hoursMon} placeholder="Monday"></input>
-                    <input className="form-control" type="text" name="hoursTue" onChange={handleChange('hoursTue')} value={hoursTue} placeholder="Tuesday"></input>
-                    <input className="form-control" type="text" name="hoursWed" onChange={handleChange('hoursWed')} value={hoursWed} placeholder="Wednesday"></input>
-                    <input className="form-control" type="text" name="hoursThu" onChange={handleChange('hoursThu')} value={hoursThu} placeholder="Thursday"></input>
-                    <input className="form-control" type="text" name="hoursFri" onChange={handleChange('hoursFri')} value={hoursFri} placeholder="Friday"></input>
-                    <input className="form-control" type="text" name="hoursSat" onChange={handleChange('hoursSat')} value={hoursSat} placeholder="Saturday"></input>
-                    <input className="form-control" type="text" name="hoursSun" onChange={handleChange('hoursSun')} value={hoursSun} placeholder="Sunday"></input>
-                </div>
-                <div className="form-group">
-                    <input className="form-control" type="text" name="phone_number" onChange={handleChange('phone_number')} value={phone_number} placeholder="Phone number"></input>
-                </div>
-                <div className="form-group">
-                    <input className="form-control" type="text" name="email_address" onChange={handleChange('email_address')} value={email_address} placeholder="Email address"></input>
-                </div>
-                <div className="form-group">
-                    <input className="form-control" type="text" name="website_url" onChange={handleChange('website_url')} value={website_url} placeholder="Website"></input>
-                </div>
-                <div className="form-group">
-                    <input className="form-control" type="text" name="image_url" onChange={handleChange('image_url')} value={image_url} placeholder="truck image URL"></input>
-                </div>
-                <div className="form-group">
-                    <input className="form-control" type="text" name="currentLocation" onChange={handleChange('currentLocation')} value={currentLocation} placeholder="currentLocation"></input>
-                </div>
-                <div className="form-group">
-                    <input className="form-control" type="text" name="username" onChange={handleChange('username')} value={username} placeholder="username"></input>
-                </div>
-                <div className="form-group">
-                    <input className="form-control" type="text" name="owner" onChange={handleChange('owner')} value={owner} placeholder="owner"></input>
-                </div>
-                <div className="form-group">
-                    <button className="btn btn-lg btn-primary btn-block" onClick={clickSubmit}>{buttonText}</button>
-                </div>
-                <Link to="/">Go back</Link>
-            </form>
-    )
-    
-  return (
-    <Layout>
-        {JSON.stringify(isAuth())}
-        <ToastContainer />
-        <h1>Add Truck Information Page</h1>
-        {truckForm()}
-    </Layout>
-    )
-};
 
+  const [firstFocus, setFirstFocus] = React.useState(false);
+  const [lastFocus, setLastFocus] = React.useState(false);
+  React.useEffect(() => {
+    document.body.classList.add("landing-page");
+    document.body.classList.add("sidebar-collapse");
+    document.documentElement.classList.remove("nav-open");
+    return function cleanup() {
+      document.body.classList.remove("landing-page");
+      document.body.classList.remove("sidebar-collapse");
+    };
+  });
+
+  return (
+    <Fragment>
+             {JSON.stringify(isAuth())}
+             <ToastContainer />
+      <HomeNavbar />
+      <div className="wrapper">
+        <HomePageHeader />
+        <div className="section section-about-us">
+          <Container>
+            <Row>
+              <Col className="text-center" md="12">
+                <h2 className="title">Add Your Food Truck Details</h2>
+                <div class="row">
+                  <form class="col s6">
+                    <div class="row">
+                    <div class="input-field col s6">
+                        <label for="textarea1"> Business Name</label>
+                        <input className="form-control" type="text" name="name" onChange={handleChange('name')} value={name} placeholder="Truck name"></input>
+                        <label for="textarea1">Address</label>
+                        <input className="form-control" type="text" name="address" onChange={handleChange('address')} value={address} placeholder="Address"></input>
+                        <label for="textarea1">Zip Code</label>
+                        <input className="form-control" type="text" name="zipcode" onChange={handleChange('zipcode')} value={zipcode} placeholder="Zipcode"></input>
+                        <label for="textarea1">Username</label>
+                        <input className="form-control" type="text" name="username" onChange={handleChange('username')} value={username} placeholder="username"></input>
+                        <label for="textarea1">Image Url</label>
+                        <input className="form-control" type="text" name="image_url" onChange={handleChange('image_url')} value={image_url} placeholder="truck image URL"></input>
+                      </div>
+                      <div class="input-field col s6">                        
+                        <div class="input-field col s6">
+                        <label for="textarea1">Owner</label>
+                        <input className="form-control" type="text" name="owner" onChange={handleChange('owner')} value={owner} placeholder="owner"></input>
+                      </div>
+                      <div class="input-field col s3">
+                        <label for="textarea1">Website</label>
+                        <input className="form-control" type="text" name="website_url" onChange={handleChange('website_url')} value={website_url} placeholder="Website"></input>
+                      </div>
+                      <div class="input-field col s6">
+                        <label for="textarea1">Phone Number</label>
+                        <input className="form-control" type="text" name="phone_number" onChange={handleChange('phone_number')} value={phone_number} placeholder="Phone number"></input>
+                      </div>
+                      <div class="input-field col s6">
+                        <label for="textarea1">Email</label>
+                        <input className="form-control" type="text" name="email_address" onChange={handleChange('email_address')} value={email_address} placeholder="Email address"></input>
+                      </div>
+                      <div class="input-field col s6">
+                        <label for="textarea1">Current Location</label>
+                        <input className="form-control" type="text" name="currentLocation" onChange={handleChange('currentLocation')} value={currentLocation} placeholder="currentLocation"></input>
+                      </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <form class="col s12">
+                  <div class="row">
+                    <div class="input-field col s4"> 
+                    <br/>
+                    <h4 className="titles">Hours of Operation</h4>                  
+                    <label for="textarea1">Monday</label> <br/>
+                    <input className="form-control" type="text" name="hoursMon" onChange={handleChange('hoursMon')} value={hoursMon} placeholder="Monday"></input>
+                      <label for="textarea1">Tuesday</label> <br/>
+                      <input className="form-control" type="text" name="hoursTue" onChange={handleChange('hoursTue')} value={hoursTue} placeholder="Tuesday"></input>
+                      <label for="textarea1">Wednesday</label> <br/>
+                      <input className="form-control" type="text" name="hoursWed" onChange={handleChange('hoursWed')} value={hoursWed} placeholder="Wednesday"></input>
+                      <label for="textarea1">Thursday</label> <br/>
+                      <input className="form-control" type="text" name="hoursThu" onChange={handleChange('hoursThu')} value={hoursThu} placeholder="Thursday"></input>
+                      <label for="textarea1">Friday</label><br/>
+                      <input className="form-control" type="text" name="hoursFri" onChange={handleChange('hoursFri')} value={hoursFri} placeholder="Friday"></input>
+                      <label for="textarea1">Saturday</label><br/>
+                      <input className="form-control" type="text" name="hoursSat" onChange={handleChange('hoursSat')} value={hoursSat} placeholder="Saturday"></input>
+                      <label for="textarea1">Sunday</label><br/>
+                      <input className="form-control" type="text" name="hoursSun" onChange={handleChange('hoursSun')} value={hoursSun} placeholder="Sunday"></input>
+                     </div>
+                  </div>
+                  <button type="submit" class="btn btn-info" onClick={clickSubmit}>{buttonText}>Submit</button>
+                </form>
+              </Col>
+            </Row>
+            <a href="">Go Back</a>
+            <div className="separator separator-primary"></div>
+          </Container>
+        </div>
+        <DefaultFooter />
+      </div>
+      </Fragment>
+    );
+  }
+// };
 export default AddTruck;

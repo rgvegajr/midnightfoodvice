@@ -1,5 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useState} from 'react';
+import {Link, Redirect} from 'react-router-dom';
+import Layout from './Layout';
+import axios from 'axios';
+import {authenticate, isAuth} from './helpers';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 // reactstrap components
 import {
@@ -19,10 +24,48 @@ import {
 } from "reactstrap";
 
 // core components
-import HomeNavbar from "../components/Navbars/HomeNavbar.js";
+import HomeNavbar from "./HomeNavbar.js";
 // import TransparentFooter from "components/Footers/TransparentFooter.js";
 
-function LoginPage() {
+// function LoginPage() {
+  const LoginPage =() => {
+    const [values, setValues] = useState({
+      email: '',
+      password: '',
+      buttonText: 'Submit'
+  });
+  
+  const {email, password, buttonText } = values;
+  
+  const handleChange = name => event => {
+      console.log(event.target.value);
+      setValues({...values, [name]: event.target.value});
+      
+  };
+  
+  const clickSubmit = event => {
+      event.preventDefault(); //keeps page from reload
+      setValues({...values, buttonText: 'Submitting'});
+      axios({
+          method: 'POST',
+          url: `/api/signin`,
+          data: {email, password}
+      })
+      .then(response => {
+          console.log('SIGNIN SUCCESS', response);
+          authenticate(response, () => {
+          //save the response (user, token) to localstorage/cookie
+              setValues({...values, name: '', email: '', password: '', buttonText: 'Submitted'});
+              toast.success(`Welcome back to midnight food vice ${response.data.user.name}!`);                
+          });
+      })
+      .catch(error => {
+          console.log('SIGNIN ERROR', error.response.data);
+          setValues({...values, buttonText: 'Submit'});
+          toast.error(error.response.data.error);
+      });
+  };
+
   const [firstFocus, setFirstFocus] = React.useState(false);
   const [lastFocus, setLastFocus] = React.useState(false);
   React.useEffect(() => {
@@ -48,11 +91,15 @@ function LoginPage() {
         ></div>
         <div className="content">
           <Container>
+          {JSON.stringify(isAuth())}
+          <ToastContainer />
+        {isAuth() ? <Redirect to="/AddTruck"/> : null}
+        {JSON.stringify({email, password})}
             <Col className="ml-auto mr-auto" md="4">
               <Card className="card-login card-plain">
                 <Form action="" className="form" method="">
                   <CardHeader className="text-center">
-                    
+                  Sign In                  
                   </CardHeader>
                   <CardBody>
                     <InputGroup
@@ -67,10 +114,11 @@ function LoginPage() {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        // value="username"
-                        // name="username"
-                        placeholder="User Name..."
-                        type="text"
+                      onChange={handleChange('email')} value={email} 
+                      type="email" 
+                      className="form-control"
+                        placeholder="Email..."
+                        // type="text"
                         onFocus={() => setFirstFocus(true)}
                         onBlur={() => setFirstFocus(false)}
                       ></Input>
@@ -87,10 +135,10 @@ function LoginPage() {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        // value="password"
-                        // name="password"
+                      onChange={handleChange('password')} value={password} 
+                      type="password" 
+                      className="form-control"
                         placeholder="Password..."
-                        type="text"
                         onFocus={() => setLastFocus(true)}
                         onBlur={() => setLastFocus(false)}
                       ></Input>
@@ -101,13 +149,14 @@ function LoginPage() {
                       block
                       className="btn-round"
                       color="info"
-                      href="#pablo"
-                      onClick={e => e.preventDefault()}
+                      onClick={clickSubmit}
+                      // href="#pablo"
+                      // onClick={e => e.preventDefault()}
                       size="lg"
-                    >
-                      Sign In
+                    >{buttonText}
+
                     </Button>
-                    <div className="pull-left">
+                    {/* <div className="pull-left">
                       <h6>
                       <NavLink to="/signup-page" tag={Link}>
                 <i className="now-ui-icons users_circle-08"></i>Signup!
@@ -131,7 +180,7 @@ function LoginPage() {
                           Need Help?
                         </a>
                       </h6>
-                    </div>
+                    </div> */}
                   </CardFooter>
                 </Form>
               </Card>
