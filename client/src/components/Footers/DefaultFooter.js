@@ -40,22 +40,22 @@ function DefaultFooter() {
             </ul>
           </nav>
           <div className="copyright" id="copyright">
-            © {new Date().getFullYear()}, Designed by{" "}
-            <a
-              href="https://www.invisionapp.com?ref=nukr-default-footer"
-              target="_blank"
-            >
-              Invision
-            </a>
-            . Coded by{" "}
-            <a
-              href="https://www.creative-tim.com?ref=nukr-default-footer"
-              target="_blank"
-            >
-              Creative Tim
-            </a>
-            .
-          </div>
+          © {new Date().getFullYear()}, Designed by{" "}
+          <a
+            href="https://www.invisionapp.com?ref=nukr-dark-footer"
+            target="_blank"
+          >
+            Invision
+          </a>
+          . Coded by Liena Quesada, Franchesca, Legarreta, Ramon Vega, Sebastian Arnava, Joseph Ledbetter {" "}
+          <a
+            href="https://www.creative-tim.com?ref=nukr-dark-footer"
+            target="_blank"
+          >
+            
+          </a>
+          
+        </div>
         </Container>
       </footer>
     </>
