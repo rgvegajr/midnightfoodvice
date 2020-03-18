@@ -24,10 +24,8 @@ import {
 } from "reactstrap";
 
 // core components
-import HomeNavbar from "../components/HomeNavbar.js";
-
-// import HomeNavbar from "../components/Navbars/HomeNavbar.js";
-// import TransparentFooter from "components/Footers/TransparentFooter.js";
+import HomeNavbar from "./HomeNavbar.js";
+import TransparentFooter from "components/Footers/TransparentFooter.js";
 const SignupPage = () => {
 // function SignupPage() {
   const [firstFocus, setFirstFocus] = React.useState(false);
@@ -162,10 +160,8 @@ const clickSubmit = event => {
                       <Input
                       onChange={handleChange('password')} value={password} 
                       className="form-control"
-                        // value="password"
-                        // name="password"
                         placeholder="Password..."
-                        type="text"
+                        type="password"
                         onFocus={() => setLastFocus(true)}
                         onBlur={() => setLastFocus(false)}
                       ></Input>
@@ -184,38 +180,14 @@ const clickSubmit = event => {
                     >
                       {buttonText}
                     </Button>
-                    {/* <div className="pull-left">
-                      <h6>
-                      <NavLink to="/login-page" tag={Link}>
-                <i className="now-ui-icons users_circle-08"></i>Login!
-                </NavLink>
-                        {/* <a
-                          className="link"
-                          href="#pablo"
-                          onClick={e => e.preventDefault()}
-                        >
-                          Create Account
-                        </a> */}
-                      {/* </h6>
-                    </div> */} 
-                    {/* <div className="pull-right">
-                      <h6>
-                        <a
-                          className="link"
-                          href="#pablo"
-                          onClick={e => e.preventDefault()}
-                        >
-                          Need Help?
-                        </a>
-                      </h6>
-                    </div> */}
+   
                   </CardFooter>
                 </Form>
               </Card>
             </Col>
           </Container>
         </div>
-        {/* <TransparentFooter /> */}
+        <TransparentFooter />
       </div>
     </>
   );
