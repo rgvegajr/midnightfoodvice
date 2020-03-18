@@ -25,7 +25,7 @@ import {
 
 // core components
 import HomeNavbar from "./HomeNavbar.js";
-// import TransparentFooter from "components/Footers/TransparentFooter.js";
+import TransparentFooter from "components/Footers/TransparentFooter.js";
 
 // function LoginPage() {
   const LoginPage =() => {
@@ -110,7 +110,7 @@ import HomeNavbar from "./HomeNavbar.js";
                     >
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="now-ui-icons users_circle-08"></i>
+                          <i className="now-ui-icons users_email-85"></i>
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
@@ -156,38 +156,14 @@ import HomeNavbar from "./HomeNavbar.js";
                     >{buttonText}
 
                     </Button>
-                    {/* <div className="pull-left">
-                      <h6>
-                      <NavLink to="/signup-page" tag={Link}>
-                <i className="now-ui-icons users_circle-08"></i>Signup!
-                </NavLink>
-                        <a
-                          className="link"
-                          href="/signup-page"
-                          onClick={e => e.preventDefault()}
-                        >
-                          Create Account
-                        </a>
-                      </h6>
-                    </div>
-                    <div className="pull-right">
-                      <h6>
-                        <a
-                          className="link"
-                          href="#pablo"
-                          onClick={e => e.preventDefault()}
-                        >
-                          Need Help?
-                        </a>
-                      </h6>
-                    </div> */}
+                    
                   </CardFooter>
                 </Form>
               </Card>
             </Col>
           </Container>
         </div>
-        {/* <TransparentFooter /> */}
+        <TransparentFooter />
       </div>
     </>
   );
