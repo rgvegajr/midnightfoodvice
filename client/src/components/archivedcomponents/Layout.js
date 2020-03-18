@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react';
 import {Link, withRouter} from 'react-router-dom';
-import {isAuth, signout} from './helpers';
+import {isAuth, signout} from '../helpers';
 // import HomeNavbar from './components/Navbars/HomeNavbar';
-import HomeNavbar from './HomeNavbar';
+// import HomeNavbar from '../HomeNavbar';
 
 
 const Layout = ({children, match, history }) => {

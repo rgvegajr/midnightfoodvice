@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Route, Redirect} from 'react-router-dom';
-import {isAuth, signout} from './helpers';
+import {isAuth} from './helpers';
 
 // A wrapper for <Route> that redirects to the login
 // screen if you're not yet authenticated.

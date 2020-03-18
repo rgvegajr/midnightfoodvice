@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import {Link, Redirect} from 'react-router-dom';
-import Layout from './Layout';
+import { Redirect} from 'react-router-dom';
 import axios from 'axios';
 import {authenticate, isAuth} from './helpers';
 import {ToastContainer, toast} from 'react-toastify';
@@ -19,8 +18,7 @@ import {
   InputGroupText,
   InputGroup,
   Container,
-  Col, 
-  NavLink
+  Col
 } from "reactstrap";
 
 // core components
