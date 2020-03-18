@@ -1,8 +1,8 @@
 import React, {useState, Fragment} from 'react';
-// import {Link, Redirect} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import axios from 'axios';
 import {ToastContainer, toast} from 'react-toastify';
-import { isAuth} from './helpers';
+import {isAuth} from './helpers';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 // reactstrap components
@@ -21,7 +21,7 @@ import DefaultFooter from "./Footers/DefaultFooter";
 
 // function landingpagetest() {
   // const AddTruck = () => {
-const AddTruck = () => {
+const TruckInfo = ({history}) => {
     const [values, setValues] = useState({
         name: '', 
         address: '',
@@ -40,57 +40,78 @@ const AddTruck = () => {
         currentLocation: '',
         owner: '',
         username: '', 
-        buttonText: 'Submit'
+        id: '5e701ad394e3c7149fa374e5'
     });
     
     const {name, address, zipcode, hoursMon, hoursTue, hoursWed, hoursThu, hoursFri, hoursSat, hoursSun, 
             phone_number, email_address, website_url, image_url, currentLocation, owner, username, 
-            buttonText } = values;
+          id } = values;
+
+    const searchUrl = '/api/truckinfo/' + id;
+
+    axios({
+      method: 'GET',
+      url: searchUrl
+  })
+  .then(response => {
+      console.log('TRUCK READ SUCCESS', response);
+      const {name, address, zipcode, hoursMon, hoursTue, hoursWed, hoursThu, hoursFri, hoursSat, hoursSun, 
+          phone_number, email_address, website_url, image_url, currentLocation, owner, username, 
+          id } = response.data;
+      setValues({...values, name, address, zipcode, hoursMon, hoursTue, hoursWed, hoursThu, hoursFri, hoursSat, hoursSun, 
+      phone_number, email_address, website_url, image_url, currentLocation, owner, username, 
+      id});
+      toast.success(response.data.message);
+  })
+  .catch(error => {
+      console.log('TRUCK READ ERROR', error.response.data);
+      // toast.error(error.response.data.error);
+  });  
+
+    // const handleChange = name => event => {
+    //     console.log(event.target.value);
+    //     setValues({...values, [name]: event.target.value});
+    // };
     
-    const handleChange = name => event => {
-        console.log(event.target.value);
-        setValues({...values, [name]: event.target.value});
-    };
-    
-    const clickSubmit = event => {
-        event.preventDefault(); //keeps page from reload
-        setValues({...values, buttonText: 'Submitting'});
-        axios({
-            method: 'POST',
-            url: `/api/addtruck`,
-            // url: `${process.env.REACT_APP_API}/signup`,
-            data: {name, address, zipcode, hoursMon, hoursTue, hoursWed, hoursThu, hoursFri, hoursSat, hoursSun, 
-                phone_number, email_address, website_url, image_url, currentLocation, owner, username}
-        })
-        .then(response => {
-            console.log('TRUCK ADD SUCCESS', response);
-            setValues({...values, 
-                name: '', 
-            address: '',
-            zipcode: '',
-            hoursMon: '',
-            hoursTue: '',
-            hoursWed: '',
-            hoursThu: '',
-            hoursFri: '',
-            hoursSat: '',
-            hoursSun: '',
-            phone_number: '',
-            email_address: '',
-            website_url: '',
-            image_url: '',
-            currentLocation: '',
-            owner: '',
-            username: '',  
-            buttonText: 'Submitted'});
-            toast.success(response.data.message);
-        })
-        .catch(error => {
-            console.log('TRUCK ADD ERROR', error.response.data);
-            setValues({...values, buttonText: 'Submit'});
-            toast.error(error.response.data.error);
-        })         
-    };
+    // const clickSubmit = event => {
+    //     event.preventDefault(); //keeps page from reload
+    //     setValues({...values, buttonText: 'Submitting'});
+    //     axios({
+    //         method: 'POST',
+    //         url: `/api/addtruck`,
+    //         // url: `${process.env.REACT_APP_API}/signup`,
+    //         data: {name, address, zipcode, hoursMon, hoursTue, hoursWed, hoursThu, hoursFri, hoursSat, hoursSun, 
+    //             phone_number, email_address, website_url, image_url, currentLocation, owner, username}
+    //     })
+    //     .then(response => {
+    //         console.log('TRUCK ADD SUCCESS', response);
+    //         setValues({...values, 
+    //             name: '', 
+    //         address: '',
+    //         zipcode: '',
+    //         hoursMon: '',
+    //         hoursTue: '',
+    //         hoursWed: '',
+    //         hoursThu: '',
+    //         hoursFri: '',
+    //         hoursSat: '',
+    //         hoursSun: '',
+    //         phone_number: '',
+    //         email_address: '',
+    //         website_url: '',
+    //         image_url: '',
+    //         currentLocation: '',
+    //         owner: '',
+    //         username: '',  
+    //         buttonText: 'Submitted'});
+    //         toast.success(response.data.message);
+    //     })
+    //     .catch(error => {
+    //         console.log('TRUCK ADD ERROR', error.response.data);
+    //         setValues({...values, buttonText: 'Submit'});
+    //         toast.error(error.response.data.error);
+    //     })         
+    // };
 
   // const [firstFocus, setFirstFocus] = React.useState(false);
   // const [lastFocus, setLastFocus] = React.useState(false);
@@ -104,10 +125,55 @@ const AddTruck = () => {
     };
   });
 
+  const truckView = () => (
+    <div className="container">
+        <div className="row">
+            <p className="">Truck name:  {name}</p>
+        </div>
+        <div className="row">
+            <p className="" >Address:  {address}</p>
+        </div>
+        <div className="row">
+            <p className="">Zipcode:  {zipcode}</p>
+        </div>
+        <div className="row">
+            <p className=""> Monday:  {hoursMon}</p>
+            <p className=""> Tuesday:  {hoursTue}</p>
+            <p className=""> Wednesday:  {hoursWed}</p>
+            <p className=""> Thursday:  {hoursThu}</p>
+            <p className=""> Friday:  {hoursFri}</p>
+            <p className=""> Saturday:  {hoursSat}</p>
+            <p className=""> Sunday:  {hoursSun}</p>
+        </div>
+        <div className="row">
+        <p className=""> Phone number:  {phone_number} </p>
+        </div>
+        <div className="row">
+        <p className="">Email:  {email_address} </p>
+        </div>
+        <div className="row">
+        <p className="">Website: <a href={website_url}>{website_url}</a></p>
+        </div>
+        <div className="row">
+        <p className="">Image url:  {image_url} </p>
+        </div>
+        <div className="row">
+        <p className="">Current Location  {currentLocation} </p>
+        </div>
+        <div className="row">
+        <p className="">Username  {username} </p>
+        </div>
+        <div className="row">
+        <p className="">Owner  {owner} </p>
+        </div>
+        {/* <Link to="/">Go back</Link> */}
+    </div>
+)
+
   return (
     <Fragment>
-             {JSON.stringify(isAuth())}
-             <ToastContainer />
+      {JSON.stringify(isAuth())}
+      <ToastContainer />
       <HomeNavbar />
       <div className="wrapper">
         <HomePageHeader />
@@ -115,9 +181,10 @@ const AddTruck = () => {
           <Container>
             <Row>
               <Col className="text-center" md="12">
-                <h2 className="title">Add Your Food Truck Details</h2>
-                <div class="row">
-                  <form class="col s6">
+                <h2 className="title">Food Truck Information Page</h2>
+                {truckView()}
+                {/* <div class="row"> */}
+                  {/* <form class="col s6">
                     <div class="row">
                     <div class="input-field col s6">
                         <label for="textarea1"> Business Name</label>
@@ -154,9 +221,9 @@ const AddTruck = () => {
                       </div>
                       </div>
                     </div>
-                  </form>
-                </div>
-                <form class="col s12">
+                  </form> */}
+                {/* </div> */}
+                {/* <form class="col s12">
                   <div class="row">
                     <div class="input-field col s4"> 
                     <br/>
@@ -178,7 +245,7 @@ const AddTruck = () => {
                      </div>
                   </div>
                   <button type="submit" class="btn btn-info" onClick={clickSubmit}>{buttonText}></button>
-                </form>
+                </form> */}
               </Col>
             </Row>
             <a href="/">Go Back</a>
@@ -191,4 +258,4 @@ const AddTruck = () => {
     );
   }
 // };
-export default AddTruck;
+export default TruckInfo;

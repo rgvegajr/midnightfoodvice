@@ -1,11 +1,12 @@
-# midnightfoodvice
-1. app is deployed to heroku @ https://mdv-fe.herokuapp.com/
+# Miami Food Vice
+Ever stumbled out of a nighttime afair and were in dire need to satisfy your hunger?  Look no further.  Miami Food Vice is a food truck app that locates the nearest food trucks in your area when you're looking to feed your late night hunger.
 
-2. to run locally:
-    A.  Run "npm i" in BOTH the server directory and then cd to client and run it again
-    B.  Ensure your mongodb is running.
-    C.  Add a .env file and inside put the following: JWT_SECRET=abcdefg
+# How It Works
+Search based on general catergories of food that you would like and our app will help find a food truck in your area.  Vendors can create an account and login to create a profile for their food truck business.  Users are able to search the profiles and get info on food truck location and hours.
 
-3.  With the above done, run "npm run dev" from the root directory of the midnightfoodvice folder
+# Technology Used
+HTML, CSS, Bootstrap, React, MongoDB, MERN Stack, JWT, Google Maps API
 
-4. If you'd like, add content to the client and try it out locally, if you can get it to work, let me know and we can try and integrate you content/component.
+# Dark Mode
+Set your computer or phone setting to dark mode and watch the magic happen!
+Go to setting -> General and toggle lightmode to darkmode if on a mac.

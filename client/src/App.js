@@ -15,7 +15,7 @@ import {
 import HomeNavbar from "./components/HomeNavbar.js";
 // import HomeNavbar from "./components/Navbars/HomeNavbar.js";
 import HomePageHeader from "components/Headers/HomePageHeader.js";
-import Layout from './components/Layout';
+import Layout from './components/archivedcomponents/Layout';
 
 
 const App = () => {

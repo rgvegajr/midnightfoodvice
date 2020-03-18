@@ -101,7 +101,7 @@ function HomeNavbar({children, match, history }) {
               <Fragment>
               <NavItem>                
                 <NavLink to="/signup-page" tag={Link} style={isActive("/signup-page")}>
-                <i className="now-ui-icons shopping_shop"></i>Signup
+                <i className="now-ui-icons users_circle-08"></i>Signup
                 </NavLink>
               </NavItem>
               <NavItem>             
@@ -113,7 +113,7 @@ function HomeNavbar({children, match, history }) {
               )}
               <NavItem>             
                 <NavLink  tag={Link} to="/truckinfo/:id" className="nav-link" style={isActive("/truckinfo/:id")}>
-                <i className="now-ui-icons users_circle-08"></i>Truck Info
+                <i className="now-ui-icons"></i>Truck Info
                 </NavLink>
               </NavItem>
               {isAuth() && (
@@ -127,7 +127,7 @@ function HomeNavbar({children, match, history }) {
               </NavItem>
               <NavItem>             
                  <NavLink to="/addTruck" tag={Link} style={isActive("/addtruck")}>
-                 <i className="now-ui-icons users_circle-08"></i>Add a truck
+                 <i className="now-ui-icons"></i>Add a truck
                  </NavLink>
               </NavItem>
               </Fragment>
